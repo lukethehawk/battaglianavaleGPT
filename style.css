@@ -1,0 +1,250 @@
+/* Stile generale */
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f0f8ff;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    margin-top: 10px;
+    color: #333;
+}
+
+h2 {
+    margin: 10px 0;
+    color: #444;
+}
+
+.scoreboard {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+.game-container {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 20px;
+}
+
+.board-container {
+    text-align: center;
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(10, 40px);
+    grid-template-rows: repeat(10, 40px);
+    position: relative; /* Assicura che gli elementi figli siano posizionati correttamente */
+    overflow: hidden; /* Previene espansioni indesiderate */
+    border: 2px solid #005f91;
+    background-color: #f60f0f;
+}
+
+/* Stile generale delle celle */
+.cell {
+    width: 40px;
+    height: 40px;
+    background-color: #e6f7ff; /* Colore originale della griglia */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+
+/* Rimuove sfondi blu */
+.cell.ship {
+    background-color: transparent !important; /* Rimuove sfondo blu */
+    background-image: none; /* Nessuna immagine duplicata nelle celle */
+}
+
+
+.cell.hit {
+    position: relative;
+    background-color: transparent;
+}
+
+.cell.hit::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('images/explosion.gif');
+    background-size: cover;
+    background-repeat: no-repeat;
+    animation: explosion 1s linear forwards; /* Aggiunto "forwards" per mantenere l'ultimo stato */
+    pointer-events: none;
+}
+
+.cell.miss {
+    background-color: #cccccc;
+}
+
+/* Animazione per le esplosioni */
+@keyframes explosion {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+/* Stile delle navi */
+/* Corregge estensioni extra */
+.ship-image {
+    position: absolute;
+    background-size: contain;
+    background-repeat: no-repeat;
+    z-index: 10;
+    pointer-events: none;
+    width: 100%;
+    height: 100%;
+}
+
+.ship-5 {
+    background-image: url('images/ship-5.png');
+}
+
+.ship-4 {
+    background-image: url('images/ship-4.png');
+}
+
+.ship-3 {
+    background-image: url('images/ship-3.png');
+}
+
+.ship-2 {
+    background-image: url('images/ship-2.png');
+}
+
+.ship-1 {
+    background-image: url('images/ship-1.png');
+}
+
+/* Navi verticali */
+.ship-image.vertical {
+    transform: none; /* Nessuna rotazione */
+    background-size: contain; /* Dimensioni adattive */
+}
+
+.ship-1.vertical {
+    background-image: url('images/ship-1-v.png');
+}
+
+.ship-2.vertical {
+    background-image: url('images/ship-2-v.png');
+}
+
+.ship-3.vertical {
+    background-image: url('images/ship-3-v.png');
+}
+
+.ship-4.vertical {
+    background-image: url('images/ship-4-v.png');
+}
+
+.ship-5.vertical {
+    background-image: url('images/ship-5-v.png');
+}
+
+/* Stile per i pulsanti */
+#ship-selector {
+    margin-top: 10px;
+}
+
+.ship-btn {
+    margin: 5px;
+    padding: 10px;
+    background-color: #0077be;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.ship-btn:hover {
+    background-color: #005f91;
+}
+
+.ship-btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+#rotate-ship {
+    margin: 10px;
+    padding: 10px;
+    background-color: #f0ad4e;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#rotate-ship:hover {
+    background-color: #ec971f;
+}
+
+#start-game {
+    margin: 15px;
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#start-game:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+#start-game:hover:not(:disabled) {
+    background-color: #218838;
+}
+
+#play-again {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: none;
+    position: relative;
+}
+
+#play-again:hover {
+    background-color: #218838; /* Colore più scuro al passaggio del mouse */
+}
+
+#message {
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#player-board {
+    display: grid;
+    grid-template-columns: repeat(10, var(--cell-size));
+    grid-template-rows: repeat(10, var(--cell-size));
+    position: relative;
+}
+

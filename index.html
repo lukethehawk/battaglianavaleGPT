@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Battaglia Navale</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Battaglia Navale</h1>
+    <div class="scoreboard">
+        <p>Giocatore: <span id="player-score">0</span></p>
+        <p>CPU: <span id="cpu-score">0</span></p>
+    </div>
+    <div class="game-container">
+        <div class="board-container">
+            <h2>La tua griglia</h2>
+            <!-- Griglia del giocatore con grid-template definito -->
+            <div id="player-board" class="board" style="display: grid; grid-template-columns: repeat(10, 40px); grid-template-rows: repeat(10, 40px); position: relative;"></div>
+            <div id="ship-selector">
+                <p>Seleziona una nave da posizionare:</p>
+                <button class="ship-btn" data-size="5">Nave 5</button>
+                <button class="ship-btn" data-size="4">Nave 4</button>
+                <button class="ship-btn" data-size="3">Nave 3</button>
+                <button class="ship-btn" data-size="2">Nave 2</button>
+                <button class="ship-btn" data-size="1">Nave 1</button>
+            </div>
+            <button id="rotate-ship">Ruota Nave (Orizzontale)</button>
+            <button id="start-game" disabled>Inizia Gioco</button>
+        </div>
+        <div class="board-container">
+            <h2>Griglia del nemico</h2>
+            <!-- Griglia del nemico con grid-template definito -->
+            <div id="enemy-board" class="board" style="display: grid; grid-template-columns: repeat(10, 40px); grid-template-rows: repeat(10, 40px); position: relative;"></div>
+        </div>
+    </div>
+    <div id="message"></div>
+    <button id="play-again" style="display: none;">Gioca Ancora</button>
+    <script src="script.js"></script>
+</body>
+</html>
